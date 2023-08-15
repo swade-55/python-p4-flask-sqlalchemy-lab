@@ -13,7 +13,8 @@ class Zookeeper(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String())
     birthday = db.Column(db.String())
-    animals  = db.relationship('Animal',db.backref('zookeeper'))
+    #animals  = db.relationship('Animal',db.backref('zookeeper'))
+    animals  = db.relationship('Animal',back_populates='zookeeper')
     
     def repr(self):
         return f'<Zookeeper {self.name}!'
@@ -25,7 +26,7 @@ class Enclosure(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     environment = db.Column(db.String())
     open_to_visitors = db.Column(db.Boolean())
-    animals  = db.relationship('Animal',db.backref('enclosure'))
+    animals  = db.relationship('Animal',back_populates='enclosure')
     
     def repr(self):
         return f'<Enclosure {self.environment}!'
